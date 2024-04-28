@@ -1,0 +1,4 @@
+name: ItemManager.PC
+version: '${project.version}'
+main: org.j1sk1ss.itemmanager.ItemManager
+api-version: '1.20'
