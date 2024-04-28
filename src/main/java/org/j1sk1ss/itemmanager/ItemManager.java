@@ -3,15 +3,13 @@ package org.j1sk1ss.itemmanager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ItemManager extends JavaPlugin {
-
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        System.out.print("[ItemManager] ItemManager module activated");
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        System.out.print("[ItemManager] ItemManager module deactivated");
     }
 }
