@@ -205,4 +205,19 @@ public class Manager {
 
         return value;
     }
+
+    /**
+     * Delete key from item
+     * @param itemStack itemStack
+     * @param key Key
+     */
+    public static void deleteKeyFromContainer(ItemStack itemStack, String key) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+
+        if (meta.getPersistentDataContainer().has(containerKey))
+            meta.getPersistentDataContainer().remove(containerKey);
+
+        itemStack.setItemMeta(meta);
+    }
 }
