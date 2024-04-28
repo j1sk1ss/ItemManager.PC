@@ -2,3 +2,5 @@ name: ItemManager.PC
 version: '${project.version}'
 main: org.j1sk1ss.itemmanager.ItemManager
 api-version: '1.20'
+authors: [ j1sk1ss ]
+description: ItemStack manager for minecraft
