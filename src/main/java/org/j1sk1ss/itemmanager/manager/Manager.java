@@ -48,6 +48,16 @@ public class Manager {
     }
 
     /**
+     * Set material to itemStack
+     * @param itemStack itemStack
+     * @param material material
+     */
+    @SuppressWarnings("deprecation")
+    public static void setMaterial(ItemStack itemStack, Material material) {
+        itemStack.setType(material);
+    }
+
+    /**
      * Gets material of itemStack
      * @param item ItemStack
      * @return Material of itemStack
@@ -63,10 +73,12 @@ public class Manager {
      */
     @SuppressWarnings("deprecation")
     public static List<String> getLoreLines(ItemStack itemStack) {
-        if (itemStack.getItemMeta() == null) return new ArrayList<>();
-        if (itemStack.getItemMeta().getLore() == null) return new ArrayList<>();
+        var meta = itemStack.getItemMeta();
 
-        return itemStack.getItemMeta().getLore();
+        if (meta == null) return null;
+        if (meta.getLore() == null) return null;
+
+        return meta.getLore();
     }
 
     /**
@@ -75,7 +87,7 @@ public class Manager {
      * @return Name of itemStack
      */
     @SuppressWarnings("deprecation")
-    public static String getName(ItemStack itemStack){
+    public static String getName(ItemStack itemStack) {
         return Objects.requireNonNull(itemStack.getItemMeta().getDisplayName());
     }
 
