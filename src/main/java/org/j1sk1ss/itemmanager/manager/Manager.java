@@ -149,6 +149,28 @@ public class Manager {
     }
 
     /**
+     * Set itemStack model data
+     * @param itemStack itemStack
+     * @param modelData ModelData
+     */
+    public static void setModelData(ItemStack itemStack, int modelData) {
+        var meta = itemStack.getItemMeta();
+        meta.setCustomModelData(modelData);
+        itemStack.setItemMeta(meta);
+    }
+
+    /**
+     * Get itemStack model data
+     * @param itemStack itemStack
+     * @return Model data
+     */
+    public static int getModelData(ItemStack itemStack) {
+        if (itemStack.getItemMeta().hasCustomModelData())
+            return itemStack.getItemMeta().getCustomModelData();
+        else return -1;
+    }
+
+    /**
      * Set double to PersistentData container
      * @param itemStack itemStack
      * @param value value
