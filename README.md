@@ -19,3 +19,5 @@
     public static double getDoubleFromContainer(ItemStack itemStack, String key);
     public static int getIntegerFromContainer(ItemStack itemStack, String key);
     public static void deleteKeyFromContainer(ItemStack itemStack, String key);
+
+For best experience use Lombok with **Extension Method**
