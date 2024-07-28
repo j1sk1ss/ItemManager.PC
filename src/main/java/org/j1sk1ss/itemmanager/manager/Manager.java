@@ -24,6 +24,12 @@ public class Manager {
         var itemMeta = Objects.requireNonNull(item).getItemMeta();
         var lore = new ArrayList<Component>();
 
+        if (itemMeta == null) return item;
+        if (itemMeta.hasLore()) {
+            if (loreLine.isEmpty())
+                itemMeta.lore().clear();
+        }
+
         for (var line : loreLine.split("\n"))
             lore.add(Component.text(line));
 
@@ -177,8 +183,7 @@ public class Manager {
      * @return Model data
      */
     public static int getModelData(ItemStack itemStack) {
-        if (itemStack.getItemMeta().hasCustomModelData())
-            return itemStack.getItemMeta().getCustomModelData();
+        if (itemStack.getItemMeta().hasCustomModelData()) return itemStack.getItemMeta().getCustomModelData();
         else return -1;
     }
 
@@ -226,6 +231,22 @@ public class Manager {
     }
 
     /**
+     * Get double from container
+     * @param itemStack itemStack
+     * @param key key
+     * @param def Default value
+     * @return double from container
+     */
+    public static double getDoubleFromContainer(ItemStack itemStack, String key, double def) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+        var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.DOUBLE);
+        if (value == null) return def;
+
+        return value;
+    }
+
+    /**
      * Get int from container
      * @param itemStack itemStack
      * @param key key
@@ -236,6 +257,22 @@ public class Manager {
         var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.INTEGER);
         if (value == null) return -1;
+
+        return value;
+    }
+
+    /**
+     * Get int from container
+     * @param itemStack itemStack
+     * @param key key
+     * @param def Default value
+     * @return int from container
+     */
+    public static int getIntegerFromContainer(ItemStack itemStack, String key, int def) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+        var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.INTEGER);
+        if (value == null) return def;
 
         return value;
     }
