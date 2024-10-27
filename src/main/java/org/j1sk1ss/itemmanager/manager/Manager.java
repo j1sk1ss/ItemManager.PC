@@ -309,7 +309,7 @@ public class Manager {
      * @param value value
      * @param key key in container
      */
-    public static void setInteger2Container(ItemStack itemStack, String value, String key) {
+    public static void setString2Container(ItemStack itemStack, String value, String key) {
         var meta = itemStack.getItemMeta();
         var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
         meta.getPersistentDataContainer().set(containerKey, PersistentDataType.STRING, value);
