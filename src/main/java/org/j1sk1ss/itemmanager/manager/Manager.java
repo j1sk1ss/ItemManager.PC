@@ -161,6 +161,12 @@ public class Manager {
         }
     }
 
+    /**
+     * Check if player has item
+     * @param itemStacks items
+     * @param player player
+     * @return True, if all items from list presented in inventory
+     */
     public static boolean hasItems(List<ItemStack> itemStacks, Player player) {
         var result = true;
         for (var item : itemStacks)
@@ -171,6 +177,12 @@ public class Manager {
         return result;
     }
 
+    /**
+     * Check if player has item
+     * @param itemStack item
+     * @param player player
+     * @return True if item presented in inventory
+     */
     public static boolean hasItems(ItemStack itemStack, Player player) {
         for (var playerItem : player.getInventory()) {
             if (playerItem == null) continue;
@@ -286,6 +298,47 @@ public class Manager {
         var meta = itemStack.getItemMeta();
         var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.INTEGER);
+        if (value == null) return def;
+
+        return value;
+    }
+
+    /**
+     * Set string to PersistentData container
+     * @param itemStack itemStack
+     * @param value value
+     * @param key key in container
+     */
+    public static void setInteger2Container(ItemStack itemStack, String value, String key) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+        meta.getPersistentDataContainer().set(containerKey, PersistentDataType.STRING, value);
+        itemStack.setItemMeta(meta);
+    }
+
+    /**
+     * Get string from container
+     * @param itemStack itemStack
+     * @param key key
+     * @return int from container
+     */
+    public static String getStringFromContainer(ItemStack itemStack, String key) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+        return meta.getPersistentDataContainer().get(containerKey, PersistentDataType.STRING);
+    }
+
+    /**
+     * Get string from container
+     * @param itemStack itemStack
+     * @param key key
+     * @param def Default value
+     * @return int from container
+     */
+    public static String getStringFromContainer(ItemStack itemStack, String key, String def) {
+        var meta = itemStack.getItemMeta();
+        var containerKey = new NamespacedKey(ItemManager.getPlugin(ItemManager.class), key);
+        var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.STRING);
         if (value == null) return def;
 
         return value;
