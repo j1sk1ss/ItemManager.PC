@@ -27,7 +27,7 @@ public class Manager {
         if (itemMeta == null) return item;
         if (itemMeta.hasLore()) {
             if (loreLine.isEmpty())
-                itemMeta.lore().clear();
+                Objects.requireNonNull(itemMeta.lore()).clear();
         }
 
         for (var line : loreLine.split("\n"))
@@ -103,9 +103,7 @@ public class Manager {
      * @param player Player that will take this list
      */
     public static void giveItems(List<ItemStack> itemStacks, Player player) {
-        for (var item : itemStacks)
-            player.getInventory().addItem(item).forEach((index, itemStack) ->
-                    player.getWorld().dropItem(player.getLocation(), itemStack));
+        for (var item : itemStacks) giveItems(item, player);
     }
 
     /**
@@ -124,9 +122,7 @@ public class Manager {
      * @param player Player that will take this list
      */
     public static void giveItemsWithoutLore(List<ItemStack> itemStacks, Player player) {
-        for (var item : itemStacks)
-            player.getInventory().addItem(Manager.setLore(item, "")).forEach((index, itemStack) ->
-                    player.getWorld().dropItem(player.getLocation(), itemStack));
+        for (var item : itemStacks) giveItemsWithoutLore(item, player);
     }
 
     /**
@@ -146,10 +142,9 @@ public class Manager {
      */
     public static void takeItems(List<ItemStack> itemStacks, Player player) {
         for (var item : itemStacks)
-            if (item != null)
-                for (var playerItem : player.getInventory())
-                    if (playerItem != null)
-                        if (playerItem.equals(item)) player.getInventory().removeItem(playerItem);
+            if (item != null) {
+                takeItems(item, player);
+            }
     }
 
     /**
@@ -164,6 +159,25 @@ public class Manager {
 
             break;
         }
+    }
+
+    public static boolean hasItems(List<ItemStack> itemStacks, Player player) {
+        var result = true;
+        for (var item : itemStacks)
+            if (item != null) {
+                result = result && hasItems(item, player);
+            }
+
+        return result;
+    }
+
+    public static boolean hasItems(ItemStack itemStack, Player player) {
+        for (var playerItem : player.getInventory()) {
+            if (playerItem == null) continue;
+            if (playerItem.equals(itemStack)) return true;
+        }
+
+        return false;
     }
 
     /**
