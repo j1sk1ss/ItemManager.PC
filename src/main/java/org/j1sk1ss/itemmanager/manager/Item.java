@@ -1,8 +1,8 @@
 package org.j1sk1ss.itemmanager.manager;
 
-import lombok.experimental.ExtensionMethod;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import lombok.experimental.ExtensionMethod;
 
 
 @ExtensionMethod({Manager.class})
@@ -86,7 +86,8 @@ public class Item extends ItemStack {
         super.setType(material);
         super.setAmount(amount);
 
-        super.setModelData(dataModel);
+        cloned.getItemMeta().setCustomModelData(dataModel);
+        super.setItemMeta(cloned.getItemMeta());
     }
 
     /**
