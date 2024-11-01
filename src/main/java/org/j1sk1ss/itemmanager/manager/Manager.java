@@ -222,7 +222,7 @@ public class Manager {
      */
     public static void setDouble2Container(ItemStack itemStack, double value, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
 
         meta.getPersistentDataContainer().set(containerKey, PersistentDataType.DOUBLE, value);
         itemStack.setItemMeta(meta);
@@ -236,7 +236,7 @@ public class Manager {
      */
     public static void setInteger2Container(ItemStack itemStack, int value, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
 
         meta.getPersistentDataContainer().set(containerKey, PersistentDataType.INTEGER, value);
         itemStack.setItemMeta(meta);
@@ -250,7 +250,7 @@ public class Manager {
      */
     public static double getDoubleFromContainer(ItemStack itemStack, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.DOUBLE);
         if (value == null) return -1;
 
@@ -266,7 +266,7 @@ public class Manager {
      */
     public static double getDoubleFromContainer(ItemStack itemStack, String key, double def) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.DOUBLE);
         if (value == null) return def;
 
@@ -281,7 +281,7 @@ public class Manager {
      */
     public static int getIntegerFromContainer(ItemStack itemStack, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.INTEGER);
         if (value == null) return -1;
 
@@ -297,7 +297,7 @@ public class Manager {
      */
     public static int getIntegerFromContainer(ItemStack itemStack, String key, int def) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.INTEGER);
         if (value == null) return def;
 
@@ -312,7 +312,7 @@ public class Manager {
      */
     public static void setString2Container(ItemStack itemStack, String value, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         meta.getPersistentDataContainer().set(containerKey, PersistentDataType.STRING, value);
         itemStack.setItemMeta(meta);
     }
@@ -325,7 +325,7 @@ public class Manager {
      */
     public static String getStringFromContainer(ItemStack itemStack, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         return meta.getPersistentDataContainer().get(containerKey, PersistentDataType.STRING);
     }
 
@@ -338,7 +338,7 @@ public class Manager {
      */
     public static String getStringFromContainer(ItemStack itemStack, String key, String def) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
         var value = meta.getPersistentDataContainer().get(containerKey, PersistentDataType.STRING);
         if (value == null) return def;
 
@@ -352,7 +352,7 @@ public class Manager {
      */
     public static void deleteKeyFromContainer(ItemStack itemStack, String key) {
         var meta = itemStack.getItemMeta();
-        var containerKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("ItemManager.PC"), key);
+        var containerKey = new NamespacedKey(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("ItemManager.PC")), key);
 
         if (meta.getPersistentDataContainer().has(containerKey))
             meta.getPersistentDataContainer().remove(containerKey);

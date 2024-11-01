@@ -86,8 +86,7 @@ public class Item extends ItemStack {
         super.setType(material);
         super.setAmount(amount);
 
-        cloned.getItemMeta().setCustomModelData(dataModel);
-        super.setItemMeta(cloned.getItemMeta());
+        super.setModelData(dataModel);
     }
 
     /**
