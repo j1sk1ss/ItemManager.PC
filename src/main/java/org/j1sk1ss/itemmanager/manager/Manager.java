@@ -156,9 +156,10 @@ public class Manager {
     public static void takeItems(ItemStack itemStack, Player player) {
         for (var playerItem : player.getInventory()) {
             if (playerItem == null) continue;
-            if (playerItem.equals(itemStack)) player.getInventory().removeItem(playerItem);
-
-            break;
+            if (playerItem.equals(itemStack)) {
+                player.getInventory().removeItem(playerItem);
+                break;
+            }
         }
     }
 
@@ -170,10 +171,11 @@ public class Manager {
      */
     public static boolean hasItems(List<ItemStack> itemStacks, Player player) {
         var result = true;
-        for (var item : itemStacks)
+        for (var item : itemStacks) {
             if (item != null) {
                 result = result && hasItems(item, player);
             }
+        }
 
         return result;
     }
